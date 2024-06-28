@@ -1,0 +1,1 @@
+# fsc-stocks-manager
