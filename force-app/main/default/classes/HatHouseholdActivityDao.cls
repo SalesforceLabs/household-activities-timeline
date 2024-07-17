@@ -1,11 +1,11 @@
-public with sharing class HouseholdActivitiesTimelineDao {
+public with sharing class HatHouseholdActivityDao {
 
   public List<AccountContactRelation> getAccountContactRelation(String householdAccountId) {
     return [SELECT Contact.Id FROM AccountContactRelation WHERE AccountId = :householdAccountId];
   }
 
   public List<Task> getTasks(List<Id> contactIds) {
-    return [SELECT Id, WhoId, Who.Name, Subject, WhatId, What.Name FROM Task WHERE WhoId IN :contactIds ];
+    return [SELECT Id, WhoId, Who.Name, Subject, WhatId, What.Name FROM Task WHERE WhoId IN :contactIds];
   }
 
   public List<Event> getEvents(List<Id> contactIds) {

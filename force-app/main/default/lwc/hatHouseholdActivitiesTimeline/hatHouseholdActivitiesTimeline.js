@@ -1,7 +1,7 @@
-import getHouseholdActivities from '@salesforce/apex/HouseholdActivitiesTimelineService.getHouseholdActivities';
+import getHouseholdActivities from '@salesforce/apex/HatHouseholdActivityService.getHouseholdActivities';
 import { LightningElement, api, wire } from 'lwc';
 
-export default class Timeline extends LightningElement {
+export default class hatHouseholdActivitiesTimeline extends LightningElement {
   @api recordId;
   accountActivities;
   error;

@@ -6,7 +6,7 @@
     }
   ],
   "name": "HouseholdActivitiesTimeline",
-  "namespace": "hat",
+  "namespace": "HAT",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "61.0"
 }

@@ -1,4 +1,4 @@
-public with sharing class HouseholdActivitiesTimelineService {
+public class HatHouseholdActivityService {
 
   private static String STRING_EMPTY = '';
   private static String ID = 'id';
@@ -9,7 +9,7 @@ public with sharing class HouseholdActivitiesTimelineService {
   private static String TYPE_TASK = 'task';
   private static String TYPE_EVENT = 'event';
 
-  private static HouseholdActivitiesTimelineDao dao = new HouseholdActivitiesTimelineDao();
+  private static HatHouseholdActivityDao dao = new HatHouseholdActivityDao();
 
   @AuraEnabled(cacheable=true)
   public static Map<String, List<Map<String, String>>> getHouseholdActivities(String householdAccountId) {
@@ -20,6 +20,7 @@ public with sharing class HouseholdActivitiesTimelineService {
   }
 
   private static List<Id> getContactIds(String householdAccountId) {
+    System.debug(dao);
     List<AccountContactRelation> recs = dao.getAccountContactRelation(householdAccountId);
     List<Id> contactIds = new List<Id>();
     for (AccountContactRelation rec : recs) {
