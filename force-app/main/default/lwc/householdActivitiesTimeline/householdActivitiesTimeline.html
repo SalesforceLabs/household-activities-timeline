@@ -1,0 +1,26 @@
+<template>
+  <lightning-card title="Household Activities Timeline">
+    <template if:true={accountActivities}>
+      <lightning-accordion allow-multiple-sections-open onsectiontoggle={handleToggleSection} active-section-name={activeAccountName}>
+        <template for:each={accountActivities} for:item="account">
+          <lightning-accordion-section key={account.accountName} name={account.accountName} label={account.accountName}
+            initially-expanded={account.expanded}>
+            <ul class="slds-list_vertical">
+              <template for:each={account.activities} for:item="activity">
+                <li key={activity} class="slds-var-m-bottom_medium slds-var-m-top_small">
+                  <div class="slds-grid">
+                    <div><lightning-icon icon-name={activity.iconName} size="small" class="slds-var-m-right_x-small"></lightning-icon></div>
+                    <div class="slds-var-m-left_small">
+                      <a href={activity.url} target="_blank" class="slds-text-link"><h3>{activity.subject}</h3></a>
+                      <p>{activity.message}</p>
+                    </div>
+                  </div>
+                </li>
+              </template>
+            </ul>
+          </lightning-accordion-section>
+        </template>
+      </lightning-accordion>
+    </template>
+  </lightning-card>
+</template>
