@@ -1,17 +1,27 @@
 import getHouseholdActivities from '@salesforce/apex/HatHouseholdActivityService.getHouseholdActivities';
+import NAME_FIELD from '@salesforce/schema/Account.Name';
+import { getRecord } from "lightning/uiRecordApi";
 import { LightningElement, api, wire } from 'lwc';
 
 export default class HatHouseholdActivity extends LightningElement {
+  
   @api recordId;
   accountActivities;
   error;
+  recordType;
+
+  @wire(getRecord, { recordId: "$recordId", fields: NAME_FIELD})
+  getAccountRecord({data}) {
+    console.log(data);
+    data ? this.recordType = data.recordTypeInfo.name : '';
+  }
 
   @wire(getHouseholdActivities, { householdAccountId: '$recordId' })
-  wiredActivities({ error, data }) {
-    if (data) {
+  wiredActivities({ data }) {
+    if (this.recordType == 'Household' && data) {
         this.accountActivities = this.mapDataToList(data);
-    } else if (error) {
-        console.error('Error fetching household activities:', error);
+    } else {
+      this.accountActivities = false;
     }
   }
 
@@ -52,7 +62,6 @@ export default class HatHouseholdActivity extends LightningElement {
       `You have an upcoming ${activity.type} with ${activity.whoId}`;
   }
 
-  //to fetch task and events
   getRecordUrl(recordId) {
     return `/${recordId}`;
   }
