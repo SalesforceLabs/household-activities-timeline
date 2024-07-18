@@ -1,17 +1,18 @@
+/**
+ * @description This class calls the dao and builds map of events and tasks of all the contacts in the household
+ * and used in the LWC wiring to get the activities and show it in the view.
+ * @author tbal
+ */
 public class HatHouseholdActivityService {
-
-  private static String STRING_EMPTY = '';
-  private static String ID = 'id';
-  private static String SUBJECT = 'subject';
-  private static String WHOID = 'whoId';
-  private static String WHATID = 'whatId';
-  private static String TYPE = 'type';
-  private static String TYPE_TASK = 'task';
-  private static String TYPE_EVENT = 'event';
 
   private static HatHouseholdActivityDao dao = new HatHouseholdActivityDao();
 
   @AuraEnabled(cacheable=true)
+  /**
+   * @description This function calls the method to get the tasks and events of the contacts in the household
+   * @param householdAccountId
+   * @return Map<String, List<Map<String, String>>>
+   */
   public static Map<String, List<Map<String, String>>> getHouseholdActivities(String householdAccountId) {
     List<Id> contactIds = getContactIds(householdAccountId);
     Map<Id, List<Map<String, String>>> activities = getTaskAndEventActivities(contactIds);
@@ -19,8 +20,12 @@ public class HatHouseholdActivityService {
     return accountNameWithActivities;
   }
 
+  /**
+   * @description This function calls the method to get the contacts in the household
+   * @param householdAccountId
+   * @return List<Id>
+   */
   private static List<Id> getContactIds(String householdAccountId) {
-    System.debug(dao);
     List<AccountContactRelation> recs = dao.getAccountContactRelation(householdAccountId);
     List<Id> contactIds = new List<Id>();
     for (AccountContactRelation rec : recs) {
@@ -29,6 +34,11 @@ public class HatHouseholdActivityService {
     return contactIds;
   }
 
+  /**
+   * @description This function calls the method to get all the tasks and events of the contacts in the household
+   * @param contactIds
+   * @return Map<Id, List<Map<String, String>>>
+   */
   private static Map<Id, List<Map<String, String>>> getTaskAndEventActivities(List<Id> contactIds) {
     Map<Id, List<Map<String, String>>> activities = new Map<Id, List<Map<String, String>>>();
     if (!contactIds.isEmpty()) {
@@ -41,40 +51,57 @@ public class HatHouseholdActivityService {
     return activities;
   }
 
+  /**
+   * @description This function calls the method to build tasks
+   * @param activities
+   * @param tasks
+   */
   private static void addTasksToActivities(Map<Id, List<Map<String, String>>> activities, List<Task> tasks) {
     for (Task task : tasks) {
       if (!activities.containsKey(task.WhoId)) {
         activities.put(task.WhoId, new List<Map<String, String>>());
       }
-      String relatedTo = task.What.Name != null ? task.What.Name : STRING_EMPTY;
-      String name = task.Who.Name != null ? task.Who.Name : STRING_EMPTY;
-      Map<String, String> taskMap = buildMap(task.Id, task.Subject, name, relatedTo, TYPE_TASK);
+      String relatedTo = task.What.Name != null ? task.What.Name : '';
+      String name = task.Who.Name != null ? task.Who.Name : '';
+      Map<String, String> taskMap = new Map<String, String> {
+        'id' => task.Id,
+        'subject' => task.Subject,
+        'whoId' => name,
+        'whatId' => relatedTo,
+        'type' => 'task'
+      };
       activities.get(task.WhoId).add(taskMap);
     }
   }
 
+  /**
+   * @description This function calls the method to build events
+   * @param activities
+   * @param events
+   */
   private static void addEventsToActivities(Map<Id, List<Map<String, String>>> activities, List<Event> events) {
     for (Event event : events) {
       if (!activities.containsKey(event.WhoId)) {
         activities.put(event.WhoId, new List<Map<String, String>>());
       }
-      String relatedTo = event.What.Name != null ? event.What.Name : STRING_EMPTY;
-      String name = event.Who.Name != null ? event.Who.Name : STRING_EMPTY;
-      Map<String, String> eventMap = buildMap(event.Id, event.Subject, name, relatedTo, TYPE_EVENT);
+      String relatedTo = event.What.Name != null ? event.What.Name : '';
+      String name = event.Who.Name != null ? event.Who.Name : '';
+      Map<String, String> eventMap = new Map<String, String> {
+        'id' => event.Id,
+        'subject' => event.Subject,
+        'whoId' => name,
+        'whatId' => relatedTo,
+        'type' => 'event'
+      };
       activities.get(event.WhoId).add(eventMap);
     }
   }
 
-  private static Map<String, String> buildMap(Id recordId, String recordSubject, String name, String relatedto, String recordType) {
-    return new Map<String, String>{
-      ID => recordId,
-      SUBJECT => recordSubject,
-      WHOID => name,
-      WHATID => relatedTo,
-      TYPE => recordType
-    };
-  }
-
+  /**
+   * @description This function calls the method to get the person account activities
+   * @param activities
+   * @return Map<String, List<Map<String, String>>>
+   */
   private static Map<String, List<Map<String, String>>> getPersonAccountActivities(Map<Id, List<Map<String, String>>> activities) {
     Map<String, List<Map<String, String>>> accountNameWithActivities = new Map<String, List<Map<String, String>>>();
     List<Contact> contacts = dao.getContacts(activities.keySet());

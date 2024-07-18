@@ -56,7 +56,7 @@ export default class HatHouseholdActivity extends LightningElement {
   }
 
   getActivityMessage(activity) {
-    return (activity.whatId!='' && activity.whatId != activity.whoId) ?
+    return (activity.whatId != '' && activity.whatId != activity.whoId) ?
       `You have an upcoming ${activity.type} with ${activity.whoId} about ${activity.whatId}` :
       `You have an upcoming ${activity.type} with ${activity.whoId}`;
   }

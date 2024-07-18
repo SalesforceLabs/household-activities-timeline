@@ -1,5 +1,6 @@
 /**
- * This class contains unit tests for validating the behavior of HouseholdActivitiesTimelineService class.
+ * @description This class contains unit tests for validating the behavior of HouseholdActivitiesTimelineService class.
+ * @author tbal
  */
 @isTest
 public class HatHouseholdActivityServiceTest {
@@ -48,19 +49,20 @@ public class HatHouseholdActivityServiceTest {
 
     Map<String, List<Map<String, String>>> activities = HatHouseholdActivityService.getHouseholdActivities(householdAccount.Id);
     
-    System.assertEquals(2, activities.get('Brad Household').size());
+    System.assertEquals(2, activities.get('Brad Household').size(), 'There are 2 contacts with activities in this household');
 
     Map<String, String> taskActivity = activities.get('Brad Household')[0];
     Map<String, String> meetActivity = activities.get('Brad Household')[1];
 
-    System.assertEquals('Call', taskActivity.get('subject'));
-    System.assertEquals('task', taskActivity.get('type'));
-    System.assertEquals('Jane Doe', taskActivity.get('whoId'));
-    System.assertEquals('John Doe', taskActivity.get('whatId'));
+    System.assertEquals('Call', taskActivity.get('subject'), 'Call subject');
+    System.assertEquals('task', taskActivity.get('type'), 'Task activity');
+    System.assertEquals('Jane Doe', taskActivity.get('whoId'), 'Who Id is Jane Doe');
+    System.assertEquals('John Doe', taskActivity.get('whatId'), 'What Id is John Doe');
 
-    System.assertEquals('Meeting', meetActivity.get('subject'));
-    System.assertEquals('May Doe', meetActivity.get('whoId'));
-    System.assertEquals('event', meetActivity.get('type'));
-    System.assertEquals('John Doe', meetActivity.get('whatId'));
+    System.assertEquals('Meeting', meetActivity.get('subject'), 'Meeting subject');
+    System.assertEquals('May Doe', meetActivity.get('whoId'), 'Who Id is May Doe');
+    System.assertEquals('event', meetActivity.get('type'), 'Event activity');
+    System.assertEquals('John Doe', meetActivity.get('whatId'), 'What Id is John Doe');
+
   }
 }
