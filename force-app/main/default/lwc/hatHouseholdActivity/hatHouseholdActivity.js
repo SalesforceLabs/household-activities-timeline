@@ -12,7 +12,6 @@ export default class HatHouseholdActivity extends LightningElement {
 
   @wire(getRecord, { recordId: "$recordId", fields: NAME_FIELD})
   getAccountRecord({data}) {
-    console.log(data);
     data ? this.recordType = data.recordTypeInfo.name : '';
   }
 

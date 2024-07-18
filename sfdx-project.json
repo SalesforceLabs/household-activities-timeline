@@ -2,11 +2,20 @@
   "packageDirectories": [
     {
       "path": "force-app",
-      "default": true
+      "package": "HouseholdActivitiesTimeline",
+      "versionName": "ver 1.1",
+      "versionNumber": "1.1.0.NEXT",
+      "default": true,
+      "definitionFile": "config/project-scratch-def.json",
+      "versionDescription": "A component to show Household Activity Timeline"
     }
   ],
   "name": "HouseholdActivitiesTimeline",
   "namespace": "hat",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "61.0"
+  "sourceApiVersion": "61.0",
+  "packageAliases": {
+    "HouseholdActivitiesTimeline": "0Hoa50000001lrJCAQ",
+    "HouseholdActivitiesTimeline@1.1.0-1": "04ta5000000YMqvAAG"
+  }
 }

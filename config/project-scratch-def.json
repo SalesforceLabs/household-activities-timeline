@@ -1,7 +1,7 @@
 {
   "orgName": "salesforce",
   "edition": "Developer",
-  "features": ["EnableSetPasswordInApi"],
+  "features": ["EnableSetPasswordInApi", "ContactsToMultipleAccounts"],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
