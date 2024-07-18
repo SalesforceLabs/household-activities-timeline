@@ -48,7 +48,7 @@ public class HatHouseholdActivityServiceTest {
 
     Map<String, List<Map<String, String>>> activities = HatHouseholdActivityService.getHouseholdActivities(householdAccount.Id);
     
-    System.assertEquals(2, activities.get('Test Household').size());
+    System.assertEquals(2, activities.get('Brad Household').size());
 
     Map<String, String> taskActivity = activities.get('Brad Household')[0];
     Map<String, String> meetActivity = activities.get('Brad Household')[1];
