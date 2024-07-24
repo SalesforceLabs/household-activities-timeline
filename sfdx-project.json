@@ -3,8 +3,8 @@
     {
       "path": "force-app",
       "package": "HouseholdActivitiesTimeline",
-      "versionName": "ver 1.4",
-      "versionNumber": "1.4.0.NEXT",
+      "versionName": "ver 1.5",
+      "versionNumber": "1.5.0.NEXT",
       "default": true,
       "definitionFile": "config/project-scratch-def.json",
       "versionDescription": "A component to show Household Activity Timeline"
@@ -19,6 +19,7 @@
     "HouseholdActivitiesTimeline@1.1.0-1": "04ta5000000YMqvAAG",
     "HouseholdActivitiesTimeline@1.1.0-2": "04ta5000000YNLZAA4",
     "HouseholdActivitiesTimeline@1.3.0-1": "04ta5000000YVEHAA4",
-    "HouseholdActivitiesTimeline@1.4.0-1": "04ta5000000YVKjAAO"
+    "HouseholdActivitiesTimeline@1.4.0-1": "04ta5000000YVKjAAO",
+    "HouseholdActivitiesTimeline@1.5.0-1": "04ta5000000agqLAAQ"
   }
 }

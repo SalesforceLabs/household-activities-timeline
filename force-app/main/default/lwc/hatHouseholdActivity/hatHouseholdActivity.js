@@ -12,7 +12,7 @@ export default class HatHouseholdActivity extends LightningElement {
 
   @wire(getRecord, { recordId: "$recordId", fields: NAME_FIELD})
   getAccountRecord({data}) {
-    data ? this.recordType = data.recordTypeInfo.name : '';
+    (data && data.recordTypeInfo) ? this.recordType = data.recordTypeInfo.name : '';
   }
 
   @wire(getHouseholdActivities, { householdAccountId: '$recordId' })
