@@ -1,18 +1,12 @@
-# Salesforce DX Project: Next Steps
+# Household Activities Timeline
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+Implemented a solution for voice of customer entry -
 
-## How Do You Plan to Deploy Your Changes?
+https://ideas.salesforce.com/s/idea/a0B8W00000OUmlDUAT/show-household-activities-in-the-activity-timeline
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+We developed a component to show Household's Activity Timeline.
 
-## Configure Your Salesforce DX Project
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
-
-## Read All About It
-
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+- [Salesforce AppExchange Listing](https://appexchange.salesforce.com/appxListingDetail?listingId=5aa1cec0-4e65-438b-8349-cc1f1be9d4fa)
+- [Documentation](https://salesforce.quip.com/STUhAcMaTtC1)
+- [Report issues, ask questions, seek help](https://github.com/SalesforceLabs/household-activities-timeline/issues)
